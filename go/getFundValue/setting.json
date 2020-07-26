@@ -1,0 +1,11 @@
+{
+	"Url":"http://api.fund.eastmoney.com/f10/lsjz?callback=jQuery183018519977574130597_1558194911277&fundCode=%s&pageIndex=1&pageSize=300&startDate=%s&endDate=%s&_=1558194929451",
+	"SleepSec":1,
+	"JsonStartKey":"(",
+	"JsonEndKey":")",
+	"FundCodeList": ["110011", "110012"],
+	"//":"是否把结果复制到剪贴板",
+	"CopyToClipboard": true,
+	"//":"净值结果存储文件名 如果为空则不存储",
+	"OutputFile": "result.txt"
+}

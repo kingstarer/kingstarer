@@ -64,25 +64,24 @@ const (
 * rangeEnd是数组边界
  */
 func seekToNext(sql []byte, begPos int, rangeEnd int, charType int) int {
-
-	result := begPos;
+	i := begPos;
 
 	switch charType {
 	case MULTI:
-		for ; result < rangeEnd; result++ {
-			ch := sql[result]
-			chNext := getCharSafe(sql, rangeEnd, result+ 1)
+		for ; i < rangeEnd; i++ {
+			ch := sql[i]
+			chNext := getCharSafe(sql, rangeEnd, i+ 1)
 
 			if ch == '*' && chNext == '/' {
-				result = result + 1;
+				i = i + 1;
 				break;
 			}
 		}
 
 		break
 	case LINE:
-		for ; result < rangeEnd; result++ {
-			ch := sql[result]
+		for ; i < rangeEnd; i++ {
+			ch := sql[i]
 
 			if ch == '\n' {
 				break;
@@ -91,13 +90,13 @@ func seekToNext(sql []byte, begPos int, rangeEnd int, charType int) int {
 
 		break
 	case STRING:
-		for ; result < rangeEnd; result++ {
-			ch := sql[result]
-			chNext := getCharSafe(sql, rangeEnd, result + 1)
+		for ; i < rangeEnd; i++ {
+			ch := sql[i]
+			chNext := getCharSafe(sql, rangeEnd, i+ 1)
 
 			//sql字符串里面连续的单引号被认为是' 则不是字符串结束标志
 			if ch == '\'' && chNext == '\'' {
-				result = result + 1;
+				i = i + 1;
 				continue;
 			} else if ch == '\'' {
 				break;
@@ -109,8 +108,14 @@ func seekToNext(sql []byte, begPos int, rangeEnd int, charType int) int {
 		break;
 	}
 
-	result++;
-
+	var result int
+	//一直找到字符串末尾还没有找到结束符的情况
+	if i == rangeEnd {
+		result = i;
+	} else {
+		//返回结束符下一个位置
+		result = i + 1
+	}
 
 	return result;
 }

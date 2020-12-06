@@ -151,6 +151,31 @@ func TestParseSql(t *testing.T) {
 	sqlExpect = " "
 	assertEqual(sql, sqlExpect, sqlTrim, t)
 
+	sql = "/*--";
+	sqlExprArray = ParseSql([] byte(sql), 0, len(sql));
+	sqlTrim = myTrimSql(sqlExprArray)
+	sqlExpect = " "
+	assertEqual(sql, sqlExpect, sqlTrim, t)
+
+	sql = "xx--";
+	sqlExprArray = ParseSql([] byte(sql), 0, len(sql));
+	sqlTrim = myTrimSql(sqlExprArray)
+	sqlExpect = "xx "
+	assertEqual(sql, sqlExpect, sqlTrim, t)
+
+
+	sql = "hch'''";
+	sqlExprArray = ParseSql([] byte(sql), 0, len(sql));
+	sqlTrim = myTrimSql(sqlExprArray)
+	sqlExpect = "hch "
+	assertEqual(sql, sqlExpect, sqlTrim, t)
+
+	sql = "xx'";
+	sqlExprArray = ParseSql([] byte(sql), 0, len(sql));
+	sqlTrim = myTrimSql(sqlExprArray)
+	sqlExpect = "xx "
+	assertEqual(sql, sqlExpect, sqlTrim, t)
+
 	sql = "--\na";
 	sqlExprArray = ParseSql([] byte(sql), 0, len(sql));
 	sqlTrim = myTrimSql(sqlExprArray)

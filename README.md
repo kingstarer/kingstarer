@@ -14,4 +14,6 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
-go练习
+本工程所有代码仅供学习研究使用，可以随便下载引用，但不得使用于任何非法活动。
+本人blog：
+https://www.cnblogs.com/kingstarer/

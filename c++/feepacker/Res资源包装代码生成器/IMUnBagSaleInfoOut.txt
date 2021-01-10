@@ -1,0 +1,3 @@
+BagSaleErrInfo 错误信息列表 数组
+RetCode  错误代码    char*   6   部分成功 0 全部成功 1 失败 -1 程序异常 -2
+ErrMsg 操作失败原因  char*   512  

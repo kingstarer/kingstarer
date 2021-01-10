@@ -1,0 +1,3 @@
+acctid	帐单科目名称	Char *  	256	
+recamt	实收金额	Char *  	16	以分为单位
+subamt	减免金额	Char *  	16	以分为单位

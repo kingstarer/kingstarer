@@ -1,0 +1,233 @@
+/*---------------------------------------------------------------
+//Copyright (C), 2011, Sunrise Co., Ltd.
+//Author        :   hch
+//Date          :   2011-1-11
+//Description   :   集团代付帐单查询
+//
+//Others        :   无
+//History       :   新增初始版本
+//---------------------------------------------------------------*/
+#include "IM_COM_QueryGroupFungiblePayBill.h"
+#include "view/Server.h"
+#include <iostream>
+#include <stdio.h>
+#include <string>
+#include <stdlib.h> 
+#include <vector>
+
+
+bool IM_COM_QueryGroupFungiblePayBill::IM_QueryGroupFungiblePayBill( const InParam& data, OutParam& res )
+{
+    LogHere();
+    RecordFlow();
+
+    m_rpcname = "QueryGroupFungiblePayBill";
+
+    //Msg Define
+    auto_ptr<HRecvMsg> sendmsg ( new HRecvMsg() );              // 发送数据
+    auto_ptr<HSendMsg> rcvmsg  ( new HSendMsg() );              // 接受数据
+
+
+    BASE_LOG_INFO("将结构体转换成xml报文");
+
+    if ( setCallInfo(sendmsg.get(), data) )
+    {
+        BASE_LOG_INFO("转换成功");
+    }
+    else
+    {
+         BASE_LOG_INFO("转换失败");
+         return false;
+    }
+    
+
+    BASE_LOG_INFO("调用远程接口");
+    if ( !CallRemoteCics(sendmsg.get(), rcvmsg.get(), res) )
+    {
+        BASE_LOG_INFO("调用失败");
+        return false;
+    }
+
+    BASE_LOG_INFO("解析cics返回报文");
+    if (!getCallResult(rcvmsg.get(), res))
+    {
+        BASE_LOG_ERROR("解析cics返回报文失败");
+        return false;
+    }
+    
+
+    BASE_LOG_DEBUG("组件返回码:%d,返回信息:%s", m_iErrorCode, m_sErrorStr.c_str());
+    BASE_LOG_INFO( "-------------执行调用CICS接口END:%s-------------- ", m_rpcname );
+
+    return true;
+}
+
+bool IM_COM_QueryGroupFungiblePayBill::setCallInfo(HRecvMsg *sendmsg, const InParam& data)
+{
+    LogHere();
+
+    HDataNode *node = sendmsg->GetRootNode();
+
+    string strValue;
+    //帐号
+    strValue = data.Accoid;
+    node->AddSimpleData(strValue);
+
+    //开始时间
+    strValue = data.StartTime;
+    node->AddSimpleData(strValue);
+
+    //结束时间
+    strValue = data.EndTime;
+    node->AddSimpleData(strValue);
+
+    //查询类型
+    strValue = data.qryType;
+    node->AddSimpleData(strValue);
+
+
+
+    return true;
+}
+
+
+bool IM_COM_QueryGroupFungiblePayBill::getCallResult(HSendMsg *rcvmsg, OutParam& res)
+{
+    LogHere();
+
+    /*返回参数处理*/
+    HDataNode *node = rcvmsg->GetRootNode();
+    //期望返回参数个数
+    const int expectCnt = 3;
+
+    if (! CheckDataListSize(node, expectCnt, m_rpcname))
+    {
+        return false;
+    }
+
+    int pos = 0;
+
+    if( !getHDataNodeResult(res.ALogArray, node->DataList[pos++], 
+            "组件结构体[流动信息数组]" ) )
+    {
+        return false;
+    }
+
+    if( StrToCstr(res.ErrNo, *(node->DataList[pos++]->GetKey()), 
+            "组件结构体[返回码]" ) )
+    {
+        return false;
+    }
+
+    //返回错误信息
+    HDataNode *currNode = node->DataList[pos++];
+    m_sErrorStr = *(currNode->GetKey());
+    strncpy_ex(res.ErrInfo, m_sErrorStr.c_str());
+
+
+    m_iErrorCode = 1;
+    return true;
+}
+
+
+bool IM_COM_QueryGroupFungiblePayBill::getHDataNodeResult(vector<ALog>& nodeinfo, IN HDataNode* currNode, const string& destname)
+{
+    LogHere();
+
+    //遍历数组元素
+    BASE_LOG_DEBUG("结构体数量%d", (int)currNode->DataList.size());
+    for (size_t i = 0; i < currNode->DataList.size(); i++)
+    {
+        //每个元素期望成员个数
+        const int expectParamCnt = 12;
+        HDataNode *node = currNode->DataList[i];
+
+        if (! CheckDataListSize(node, expectParamCnt, destname.c_str()))
+        {
+            return false;
+        }
+
+        int pos = 0;
+        ALog item;
+        string memname(destname);
+
+        if( !StrToCstr(item.SubjectId, *(node->DataList[pos++]->GetKey()), 
+            memname + "[帐目（科目）代码]") )
+        {
+            return false;
+        }
+
+        if( !StrToCstr(item.StartCycle, *(node->DataList[pos++]->GetKey()), 
+            memname + "[科目开始周期]") )
+        {
+            return false;
+        }
+
+        if( !StrToCstr(item.EndCycle, *(node->DataList[pos++]->GetKey()), 
+            memname + "[科目结束周期]") )
+        {
+            return false;
+        }
+
+        if( !StrToCstr(item.FlowTime, *(node->DataList[pos++]->GetKey()), 
+            memname + "[流动时间]") )
+        {
+            return false;
+        }
+
+        if( !StrToCstr(item.FlowDirection, *(node->DataList[pos++]->GetKey()), 
+            memname + "[流动方向]") )
+        {
+            return false;
+        }
+
+        if( !StrToCstr(item.FlowType, *(node->DataList[pos++]->GetKey()), 
+            memname + "[流动类型]") )
+        {
+            return false;
+        }
+
+        if( !StrToCstr(item.FlowTypeName, *(node->DataList[pos++]->GetKey()), 
+            memname + "[变更原因]") )
+        {
+            return false;
+        }
+
+        if( !StrToCstr(item.FlowAmt, *(node->DataList[pos++]->GetKey()), 
+            memname + "[流动金额]") )
+        {
+            return false;
+        }
+
+        if( !StrToCstr(item.FlowNoBalance, *(node->DataList[pos++]->GetKey()), 
+            memname + "[流动后剩余]") )
+        {
+            return false;
+        }
+
+        if( !StrToCstr(item.OperID, *(node->DataList[pos++]->GetKey()), 
+            memname + "[发起人工号]") )
+        {
+            return false;
+        }
+
+        if( !StrToCstr(item.Formnum, *(node->DataList[pos++]->GetKey()), 
+            memname + "[流水号]") )
+        {
+            return false;
+        }
+
+        if( !StrToCstr(item.Source, *(node->DataList[pos++]->GetKey()), 
+            memname + "[来源]") )
+        {
+            return false;
+        }
+
+
+        nodeinfo.push_back(item);
+    }
+
+    return true;
+}
+
+

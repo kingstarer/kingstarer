@@ -1,0 +1,9 @@
+acctid             	帐户ID	Char *   	14	帐户ID可为空，但为空时subsid就不可以为空
+subsid 	用户ID	Char *   	14	用户ID可为空，但为空时acctid就不可以为空
+StartCycle	开始周期	Char *  	8	暂为YYYYMM00，有了日帐后两位就不是00了
+EndCycle	结束周期	Char *  	8	暂为YYYYMM00，有了日帐后两位就不是00了
+Status	帐单状态	Char *	1	见下,此项和上两项是互斥的
+IsBadDebt	是否显示呆帐费用	Char *	1	“2”------是，但只列呆帐费用，用于单独的呆帐回收
+HowBadDebt	怎样对待呆帐费用	Char *	1	不需要处理
+BillType	返回帐单的形式	Char *	32	1――每帐号周期一条；（只有该项才返回余额明细）
+BillFormatNum	费用明细代码的组合级别	Char *	32	客户化帐单模板号（custbill_def中定义之template_id）

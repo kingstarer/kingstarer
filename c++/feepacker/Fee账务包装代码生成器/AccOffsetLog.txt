@@ -1,0 +1,11 @@
+Billcycle	计费月份	Char*	8	
+Feeid	费项类型	Char*	20	
+Feename	费项名称	Char*	128	
+actType	操作类型	Char*	20	
+Fee	销帐或反销帐金额	Char*	14	
+offsetDate	销帐日期	Char*	14	Yyyymmddhh24miss
+eboxunitid	账本科目	Char*	14	
+eboxunitdet	账本科目明细	Char*	14	
+eboxunitstart	帐本生效时间	Char*	14	Yyyymmddhh24miss 可为空，为空表示账本长期有效
+eboxunitstop	账本失效时间	Char*	14	Yyyymmddhh24miss 可为空，为空表示账本长期有效
+eboxunitname	账本科目名称	Char*	256	

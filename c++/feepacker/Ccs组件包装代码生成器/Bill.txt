@@ -1,0 +1,16 @@
+Accoid             	帐号	Char *  	14	此参数与输入参数同值，如果该输入参数为空，且按用户查询时，并且billtype参数是1时要填具体帐号
+Subsoid             	用户号	Char *  	14	如果是各用户帐单合并到帐号帐单，则为空串（与输入参数BillType相关）
+Cycle	帐务周期	Char *  	6	
+Totalfee	总费用（费用明细的合计）	Char *	14	
+ShouldPay	本月应缴	Char *	14	增加
+LeftInt	本月末剩余积分	Char *	14	增加
+isWrtOff	销帐标识	Char *	1	1已经销帐，0没有销帐
+Paidamt	已销费用	Char *	14	已销账金额
+TipsInfo	推荐信息	Char *	1000	个性化的套餐资费方案推荐信息
+FeeDetail	费用明细	CPArray		见下
+SpDetail	代收信息费明细	CPArray		见下
+BalanceDetail	余额明细	CPArray		见下
+IntDetail	积分明细	CPArray		见下
+MonData	当月费用结构数组	CPArray		见下
+SixmonData	半年费用趋势数据数组	CPArray		见下
+TipsData	省钱秘笈数据数组	CPArray		见下

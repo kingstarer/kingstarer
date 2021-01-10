@@ -1,0 +1,5 @@
+Region         地区编码    char * 6
+OrgID          单位编码    char * 32
+OperID         操作员工号  char * 32
+ResType        商品类别    char * 32
+ResSerial        商品序号  char * 32

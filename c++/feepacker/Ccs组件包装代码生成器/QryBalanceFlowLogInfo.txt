@@ -1,0 +1,4 @@
+Accoid	帐号  Char *   	14	
+StartTime	开始时间	Char *   	14	Yyyymmddhh24miss
+EndTime	结束时间	Char *   	14	Yyyymmddhh24miss
+qryType	查询类型	Char*	1	0全部，1只要余额增加

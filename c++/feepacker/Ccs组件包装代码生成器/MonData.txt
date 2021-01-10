@@ -1,0 +1,8 @@
+BaseFee	月基本费	Char *	14	
+IncreFee	增值业务费	Char *	14	
+ComFee	通信费	Char *	14	
+SpFee	代收费	Char *	14			
+PaybyFee	代他人付费	Char *	14	代他人付费不包含在其他帐单项中，即不区分该项的费用组成
+ReceiveFee	补收费	Char *	14	
+ViolaFee	违约金	Char *	14	
+OtherFee	其他	Char *	14	

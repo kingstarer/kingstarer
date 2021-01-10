@@ -1,0 +1,2 @@
+subsid	用户ID	Char *	14	
+Cycle	帐务周期	Char *	8	YYYYMM00，不可为0

@@ -1,0 +1,4 @@
+BillItem	是否帐单项	Char *	1	1为帐单项目、0为费项
+FeeTypeId	费用代码	Char *	32	
+Feename	费用名称	Char *	64	
+Fee	费用金额	Char *	14	

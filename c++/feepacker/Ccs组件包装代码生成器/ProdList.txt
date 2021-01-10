@@ -1,0 +1,3 @@
+ProdId	产品编号	Char *  	14	
+StratTime	生效时间	Char *	14	YYYYMMDDHHMMSS
+StopTime	失效时间	Char *	14	YYYYMMDDHHMMSS

@@ -1,0 +1,12 @@
+ServNumber	服务号码	Char *	20	如果输入参数中的prodType为4，则该字段值为集团客户下有积分变更的各产品的服务号码；如果prodType不为4，则为变更客户的服务号码
+Totalintegral	总积分	Char *	14	
+Integralcyc	积分周期	Char * 	6	特殊说明：积分周期为0时可用积分表示为优惠积分，为正常年时可用积分还是基本积分中的可用积分
+Availintegral	可用积分	Char * 	14	
+Moveintegral	转移积分	Char *   	14	
+Unavailintegral	失效积分	Char*	14	
+Saleintegral	购买积分	Char*	14	
+Updatetime	最新更新时间	Char*	14	
+Stoptime	失效时间	Char *	14	如果是优惠积分时，存放优惠积分有效期
+Brandscoretype	全品牌积分类型	Char *	32	0;基本积分 1:优惠积分 -1:不区别基本积分和优惠积分
+
+

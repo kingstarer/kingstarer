@@ -1,0 +1,2 @@
+PkgSeq °ü±àºÅ char* 32
+ErrMsg ´íÎóÐÅÏ¢ char* 1024

@@ -1,0 +1,6 @@
+subsid	用户编号	Char *   	14	
+recflag	业务标识	Char *   	4	0----正常业务 1----回退业务
+ProdList	产品申请列表	对象数组		
+YxPlanList	营销方案申请列表	对象数组		
+TradeType	业务类型	Char *	32	
+ActiveTime	激活时间	Char *	14	YYYYMMDDHHMMSS

@@ -1,0 +1,2 @@
+PkgSeqBegin 包起始编号 char *	32
+PkgSeqEnd 包结束编号 	char *	32

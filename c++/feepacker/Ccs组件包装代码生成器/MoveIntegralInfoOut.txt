@@ -1,0 +1,2 @@
+ErrNo	返回码	Char * 	8	0――成功；其他――失败
+ErrInfo	返回错误信息	Char *  	256	

@@ -1,0 +1,2 @@
+RealUse	实际使用	Char *	14	当前真正使用的费用
+TipsUse	套餐月费	Char *	14	使用省钱秘笈的费用

@@ -1,0 +1,12 @@
+SubjectId	帐目（科目）代码	Char *	32	
+StartCycle	科目开始周期	Char * 	6	
+EndCycle	科目结束周期	Char * 	6	
+FlowTime	流动时间	Char *   	14	Yyyymmddhh24miss
+FlowDirection	流动方向	Char*	1	0流入，1流出
+FlowType	流动类型	Char*	32	传空串
+FlowTypeName	变更原因	Char*	64	
+FlowAmt	流动金额	Char *	14	
+FlowNoBalance	流动后剩余	Char *	14	
+OperID	发起人工号	Char *	10	
+Formnum	流水号	Char*	14	从营业发起的缴费流水号，如果是其他（例如划扣，托收）为空串
+Source	来源	Char*	8	空中充值填写代理商，如连连科技写LL，其他变更原因置空

@@ -1,0 +1,7 @@
+Region      地市编码	Char *	6
+OrgID          单位编码	Char *	32
+OperID         操作员工号	Char *	32
+ResType        商品标识	Char *	32
+ResState       商品状态	Char *	6
+StartSerial    商品资源开始序号	Char *	32
+EndSerial      商品资源结束序号	Char *	32

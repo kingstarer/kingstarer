@@ -1,0 +1,2 @@
+BillCyc	周期	Char *	8	
+Fee	费用	Char *	14	

@@ -1,0 +1,6 @@
+Region   地区编码	Char *	6
+OrgID    单位编码	Char *	32
+OperID   操作员工号	Char *	32
+RecOID    业务流水号	Char *	32
+Agentid 代理商编码	Char *	32
+BagSalePack 冲值券包编号列表 数组

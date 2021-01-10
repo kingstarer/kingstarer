@@ -1,0 +1,12 @@
+ 打开配置文件，获取srvcode (用以替换<Common>)，srvname(用以替换<余额流动历史（帐目变更日志）查询接口>)，inparam、outparam、outputdir
+
+ 打开所有模板.h和.cpp文件，分别存放在不同string中
+
+ 替换所有string中的<Common>、<COMMON>、<组件名称>
+
+ 读取inparam，生成入参定义，读取outparam，生成出参定义。
+
+ 如果出参没有数组结构体，则替换<ParseArrayToNodeDefineImplement> <ParseArrayToNodeDefine>
+===============================
+
+代码写得比较烂，谁有空优化一下

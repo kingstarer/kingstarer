@@ -1,0 +1,3 @@
+Accoid	帐号	Char *   	14	
+startTime	开始日期	Char*	14	yyyymmddhhmiss
+endTime	结束日期	Char*	14	yyyymmddhhmiss

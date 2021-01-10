@@ -1,0 +1,4 @@
+GroupID           	集团编码	Char *  	14	此参数与输入参数同值 
+Cycle	帐务周期	Char *  	6	
+Totalfee	总费用（所有费用项的合计）	Char *	14	CustMemberBill 中各项费用的合计
+CustMemberBill	费用明细	数组		见下

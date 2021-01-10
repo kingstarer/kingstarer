@@ -1,0 +1,7 @@
+Formnum	缴费流水号	Char *   	20
+FromAccoid	源帐号	Char *   	14
+ToAccoid	目的帐号	Char *   	14
+Unit	营业厅	Char *	32
+Op	操作员	Char *	32
+busicode	业务类型	Char*	32
+payReason	缴费变更类型	char*	20

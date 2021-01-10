@@ -1,0 +1,8 @@
+MonInt	本月积分	Char *	14	
+ConsumInt	本月消费积分	Char *	14	
+AwardInt	本月奖励积分	Char *	14	
+BeforeAvlInt	上月末剩余可兑换积分	Char *	14	
+AwardedInt	本月已兑换积分	Char *	14	
+DonateInt	本月捐赠积分	Char *	14	
+LeftInt	本月末剩余积分	Char *	14	
+CleanInt	年底清零积分	Char *	14	

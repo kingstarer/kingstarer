@@ -1,0 +1,5 @@
+ResSerial 商品序号 char 32
+ResType 商品标识 char 32
+Status 商品状态 char 32
+Price 商品价格 char 16
+UCID UCID char 32

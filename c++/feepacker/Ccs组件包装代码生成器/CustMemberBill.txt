@@ -1,0 +1,4 @@
+ServNum	代付的产品号码	Char *	32	
+Name	代付的产品名称	Char *	64	
+FungibleRate	代付额度	Char *	64	
+RealPayFee	实际代付金额	Char *	14	

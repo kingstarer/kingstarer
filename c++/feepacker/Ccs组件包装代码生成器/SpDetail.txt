@@ -1,0 +1,4 @@
+SpName	服务商名称	Char *	64	
+BusCode	服务代码	Char *	32	
+BusName	订购业务名称	Char *	64	
+Fee	费用金额	Char *	14	

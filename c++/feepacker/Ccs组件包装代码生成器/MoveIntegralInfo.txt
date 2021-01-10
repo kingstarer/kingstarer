@@ -1,0 +1,13 @@
+Businum	业务流水号	Char*	20	
+Outcustid	转出客户编码	Char *   	14	转出产品类型为全球通号码时使用
+OutServnumber	转出服务号码	Char *	20	转出产品类型为动感地带号码,神州行号码，神州大众卡号码时使用
+OutProdtype	转出产品类型	Char * 	32	0:全球通号码 1:动感地带号码 2.神州行号码 3.神州大众卡号码
+Region	地区编码	Char * 	8	
+Incustid	转入客户编码	Char *   	14	
+InServnumber	转入服务号码	Char *	20	转入产品类型为动感地带号码,神州行号码，神州大众卡号码时使用
+InProdtype	转入产品类型	Char *	32	0:全球通号码 1:动感地带号码 2.神州行号码 3.神州大众卡号码
+Oprcode            	操作员	Char *	20	
+Intchgrsn	积分变更原因	Char *  	8	
+Moveintegral	转移积分	Char *	14	
+Movecycle	积分周期	Char *	6	YYYY
+Unit	营业厅	Char *	32	

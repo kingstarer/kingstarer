@@ -1,0 +1,13 @@
+BeforeAmt	本月初结余	Char *	14	
+ZSAmt	赠费	Char *	14	
+DiscAmt	优惠	Char *	14	
+BackFee	退费	Char *	14	
+PaybyAmt	他人代付	Char *	14	
+InvalidAmt	本月失效费用	Char *	14	
+DepositAmt	本月沉淀话费	Char *	14	
+ThisMonBack	分月返还	Char *	14	
+ThisMonPay	本月累计已交费	Char *	14	
+Totalfee	费用合计	Char *	14	
+AfterAmt	本月末结余	Char *	14	
+ShouldPay	本月末应缴	Char *	14	
+WillBackAmt	分月未返还金额	Char *	14	

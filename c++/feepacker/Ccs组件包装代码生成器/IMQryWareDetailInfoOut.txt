@@ -1,0 +1,3 @@
+Ucid ucid数组 数组
+RetCode  错误代码    char   6  成功1 失败-1
+ErrMsg 操作失败原因  char   511  	

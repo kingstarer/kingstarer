@@ -1,0 +1,4 @@
+BillAccount	代付帐单数组	对象数组  		见下
+SourceNo	查询流水号	Char * 	14	该字段只有在输入字段Flag不为空时才增加
+ErrNo	返回码	Char * 	8	0――成功； -1――失败 1000—开始异步查询 1001—异步等待
+ErrInfo	返回错误信息	Char * 	256	

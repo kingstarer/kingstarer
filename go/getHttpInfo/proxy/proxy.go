@@ -52,8 +52,9 @@ func Socksproxy() {
 }
 
 //http代理
-func HttpProxyGet(ipAndPort string, getPath string) (string, error) {
+func HttpProxyGet(ipAndPort string, getPath string) (int, string, error) {
 	var data string
+	var statusCode int = http.StatusInternalServerError
 
 	urli := url.URL{}
 	//设置一个http代理服务器格式
@@ -61,7 +62,7 @@ func HttpProxyGet(ipAndPort string, getPath string) (string, error) {
 	urlproxy, err := urli.Parse(agentUrl)
 	if err != nil {
 		logger.Debug("Parse fail %v", err)
-		return "", err
+		return statusCode, "", err
 	}
 
 	//设置一个http客户端
@@ -87,17 +88,28 @@ func HttpProxyGet(ipAndPort string, getPath string) (string, error) {
 			body, errs := ioutil.ReadAll(response.Body)
 			err = errs
 			data = string(body)
+			statusCode = response.StatusCode
 		}
 	}
 
-	return data, err
+	return statusCode, data, err
 }
 
 //获取本机对外ip地址
 func GetLocalIp() (string, error) {
 	var result string
-	logger.Debug("从远程获取本机ip地址")
-	result, err := http2.HttpGetLocal(config.CfgGetHttpInfo.Api.IpApi)
+	var err error
+
+	//测试时发现偶尔获取不到本机对外ip 所以增加重试机制
+	for i := 0; i < 3; i++ {
+		logger.Debug("从远程获取本机ip地址")
+		result, err = http2.HttpGetLocal(config.CfgGetHttpInfo.Api.IpApi)
+		if err == nil {
+			break
+		}
+		logger.Error("获取对外ip失败，需要重试")
+	}
+
 	if err != nil {
 		return "", err
 	}

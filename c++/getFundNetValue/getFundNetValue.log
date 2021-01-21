@@ -1,0 +1,39 @@
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  363k    0  363k    0     0   327k      0 --:--:--  0:00:01 --:--:--  327k100  620k    0  620k    0     0   516k      0 --:--:--  0:00:01 --:--:--  516k
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 27741  100 27741    0     0   173k      0 --:--:-- --:--:-- --:--:--  173k
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 34845  100 34845    0     0   216k      0 --:--:-- --:--:-- --:--:--  241k
+读取配置
+[url] = [http://fund.eastmoney.com/fund.html]
+[utf2gbk] = [1]
+[allNetValueBegin] = [datas:[[]
+[allNetValueEnd] = []],count:]
+[netValueSplit] = [],[]
+[cellSplit] = [,]
+[todayNetValuePos] = [4]
+[yesterdayNetValuePos] = [6]
+[increasePos] = [9]
+[increaseIsPercent] = [0]
+[fundSnPos] = [1]
+[fundNamePos] = [2]
+[trimChar] = ["]
+[leftTrimNameChar] = []
+[referer] = []
+[user-agent] = []
+[url] = [http://fund.eastmoney.com/QDII_jzzzl.html#os_0;isall_0;ft_;pt_6]
+[changeQdiiFundFlag] = [1]
+[dataBegin] = [<div id="tableDiv">]
+[dataEnd] = [</table></div>]
+[url] = [http://fund.eastmoney.com/cnjy_jzzzl.html]
+[getCnFundFlag] = [1]
+[dataBegin] = [<div id="tableDiv">]
+[dataEnd] = [</table></div>]
+读取基金净值
+读取基金净值成功
+getFoundNetValue
+changeQdiiFundFlag = 1
+totalQdiiNum = 290

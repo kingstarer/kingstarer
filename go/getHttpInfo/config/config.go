@@ -1,12 +1,14 @@
 package config
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
 	"github.com/BurntSushi/toml"
 	"github.com/htgx/htcomm"
 	"io/ioutil"
 	"os"
+	"strings"
 )
 
 type LogConf struct {
@@ -17,9 +19,14 @@ type LogConf struct {
 }
 
 type Api struct {
+	//获取代理服务器ip的网址
 	AddrApi    string
+	//获取当前机器外网ip的网址
 	IpApi string
+	//添加代表服务器白名单的网址
 	WhiteApi string
+	//互联网文档
+	ArchiveApi string
 }
 
 type StGetHttpInfo struct {
@@ -58,3 +65,18 @@ func LoadConfig(confFile string) error {
 
 	return nil
 }
+
+
+//获取配置
+//指定的路径 path
+//返回以行为单位的string类型配置数组
+func ReadConfig(path string) ([]string, error) {
+	dat, err := ioutil.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	//删除尾部换行
+	dat = bytes.Trim(dat, "\r\n")
+	return strings.Split(string(dat), "\r\n"), nil
+}
+

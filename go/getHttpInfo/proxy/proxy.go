@@ -51,7 +51,7 @@ func Socksproxy() {
 
 }
 
-//http代理
+//http代理 返回状态码 请求结果 错误信息
 func HttpProxyGet(ipAndPort string, getPath string) (int, string, error) {
 	var data string
 	var statusCode int = http.StatusInternalServerError
@@ -71,7 +71,7 @@ func HttpProxyGet(ipAndPort string, getPath string) (int, string, error) {
 			Proxy: http.ProxyURL(urlproxy),
 		},
 	}
-	logger.Debug("urlproxy:", agentUrl)
+	logger.Debugf("urlproxy: %v getPath = %v", agentUrl, getPath)
 
 	//访问地址http://myip.top
 	rqt, err := http.NewRequest("GET", getPath, nil)
@@ -81,6 +81,7 @@ func HttpProxyGet(ipAndPort string, getPath string) (int, string, error) {
 		//处理返回结果
 		response, err_rep := client.Do(rqt)
 		if err_rep != nil {
+			logger.Error("client.Do fail")
 			err = err_rep
 		} else {
 			defer response.Body.Close()

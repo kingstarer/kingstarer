@@ -25,7 +25,7 @@ func Socksproxy() {
 	//访问地址http://myip.top
 	rqt, err := http.NewRequest("GET", "http://myip.top", nil)
 	if err != nil {
-		println("接口获取IP失败!")
+		println("接口获取IP失败!") 
 		return
 	}
 	//添加一个识别信息

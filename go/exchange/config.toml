@@ -1,0 +1,24 @@
+[app]
+work = 1
+# 
+
+[logCfg]
+#日志等级
+logLevel = "debug"
+#日志名称
+logName = "getHttpInfo"
+#日志路径
+logPath = "./logs/"
+# 是否把日志同步输出到控制台 一般只有调试时才输出
+stdoutEnableFlag = true
+
+[api]
+# 需要添加白名单之后才可以获取代理服务器ip
+whiteApi = "http://api.ipidea.net/index/index/save_white?neek=197383&appkey=08cd244f10b9990e12f6d0e9b8c7fda6&white="
+# 获取单个代理服务器ip和端口 返回格式为ip:端口
+addrApi = "http://tiqu.linksocket.com:81/abroad?num=1&type=1&lb=1&sb=0&flow=1&regions=&n=0"
+#获取对外ip的api  内网ip一般不是本机对外ip
+ipApi = "http://myip.top"
+#http://web.archive.org/web/timemap/link/
+archiveApi = "http://web.archive.org/web/timemap/link/"
+

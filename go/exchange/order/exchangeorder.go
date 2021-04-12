@@ -132,13 +132,14 @@ func dualCompDualOrder(listBuy *listType.List) {
 	iteratorBuy := listBuy.Iterator()
 	ok := iteratorBuy.Next()
 	for ok {
-		idx := iteratorBuy.Index()
-		ok = iteratorBuy.Next()
 		orderIdBuy := iteratorBuy.Value().(int64)
 		orderBuy := g_orderMap[orderIdBuy]
 		numToBuy := orderBuy.ExpectExchangeNum
 
+		idx := iteratorBuy.Index()
+		ok = iteratorBuy.Next()
 		if numToBuy == 0 {
+			//需要先往后移再删除
 			log.Debugf("删除买单%d id = %v", idx, orderIdBuy)
 			listBuy.Remove(idx)
 		}

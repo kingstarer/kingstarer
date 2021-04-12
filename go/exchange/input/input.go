@@ -51,7 +51,10 @@ func do(inputStrSlice []string) string {
 		}
 
 		if operType == operTypeAdd {
-			theOrder.Add(orderId, orderType[0], expectPrice, num)
+			err = theOrder.Add(orderId, orderType[0], expectPrice, num)
+			if err != nil {
+				log.Fatalf("增加订单%v失败 %v 可能是订单号出现重复", orderId, err)
+			}
 		} else {
 			err = theOrder.Del(orderId)
 			if err != nil {

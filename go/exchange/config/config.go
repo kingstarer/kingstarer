@@ -27,6 +27,10 @@ type Api struct {
 	WhiteApi string
 	//互联网文档
 	ArchiveApi string
+	//workerId
+	WorkerId int64
+	//datacenterId
+	DataCenterId int64
 }
 
 type StCfgProgram struct {

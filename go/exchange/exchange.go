@@ -2,9 +2,11 @@ package main
 
 import (
 	"exchange/config"
+	"exchange/input"
+	"exchange/order"
 	"fmt"
+	log "github.com/htgx/htcomm/logger"
 )
-import log "github.com/htgx/htcomm/logger"
 
 func main() {
 
@@ -18,4 +20,9 @@ func main() {
 		config.CfgProgram.LogCfg.LogPath, config.CfgProgram.LogCfg.StdoutEnableFlag)
 	log.Info("init ok")
 
+	var od order.Order
+	od.OrderId = 10
+	log.Infof("od = %v", od)
+
+	input.InputOrderAndDual()
 }

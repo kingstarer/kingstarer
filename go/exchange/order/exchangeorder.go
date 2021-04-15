@@ -40,16 +40,20 @@ func addOrderToExchangeList(order *Order) error {
 	} else {
 		mapToDual = g_exchangeOrder.OrderToSell
 	}
+	log.Debugf("order.BuyOrSellFlag = %c", order.BuyOrSellFlag)
 
 	var list *listType.List
 	val, ok := mapToDual.Get(order.ExpectPrice)
 	if !ok {
+		log.Debugf("create new list")
 		list = listType.New()
 		mapToDual.Put(order.ExpectPrice, list)
 	} else {
+		log.Debugf("use exist list")
 		list = val.(*listType.List)
 	}
 
+	log.Debugf("add order.OrderId = %v", order.OrderId)
 	list.Add(order.OrderId)
 	return nil
 }
@@ -140,7 +144,7 @@ func dualCompDualOrder(listBuy *listType.List) {
 		ok = iteratorBuy.Next()
 		if numToBuy == 0 {
 			//需要先往后移再删除
-			log.Debugf("删除买单%d id = %v", idx, orderIdBuy)
+			log.Debugf("移除完全成交%c单%d id = %v", orderBuy.BuyOrSellFlag, idx, orderIdBuy)
 			listBuy.Remove(idx)
 		}
 	}
@@ -157,6 +161,11 @@ func dualList(expectBuyPrice int, numToSell int, numToBuy int, orderBuy *Order, 
 		DualPrice:   expectBuyPrice,
 	}
 
+	log.Debugf("成交价格%d 预期买单 %d 预期卖单 %d", expectBuyPrice, numToBuy, numToSell)
+
+	log.Debugf("卖单情况%v", orderSell)
+	log.Debugf("买单情况%v", orderBuy)
+
 	if numToSell == numToBuy {
 		//买卖数量一致，最好处理了 把买单和卖单预期交易数量改为0即可
 		orderBuy.ExpectExchangeNum = 0
@@ -171,7 +180,7 @@ func dualList(expectBuyPrice int, numToSell int, numToBuy int, orderBuy *Order, 
 		//买单部分成交
 		orderBuy.ExpectExchangeNum -= numToSell
 		orderBuy.OrderState = ORDER_STATE_PARTIAL
-		//卖单完全成效
+		//卖单完全成交
 		orderSell.ExpectExchangeNum = 0
 		orderSell.OrderState = ORDER_STATE_ALL
 		changeLog.DualNum = numToSell
@@ -181,7 +190,7 @@ func dualList(expectBuyPrice int, numToSell int, numToBuy int, orderBuy *Order, 
 		//买单部分成交
 		orderBuy.ExpectExchangeNum = 0
 		orderBuy.OrderState = ORDER_STATE_ALL
-		//卖单完全成效
+		//卖单部分成交
 		orderSell.ExpectExchangeNum -= numToBuy
 		orderSell.OrderState = ORDER_STATE_PARTIAL
 		changeLog.DualNum = numToBuy
@@ -234,10 +243,12 @@ func matchExchangeOrder() {
 
 		//撮合后如果对应价格没有订单 则将该价格从待撮合订单结构体里面删除
 		if listSell.Empty() {
+			log.Debugf("该价格位上的卖单完全成交 需要移除")
 			g_exchangeOrder.OrderToSell.Remove(minSell)
 		}
 
 		if listBuy.Empty() {
+			log.Debugf("该价格位上的买单完全成交 需要移除")
 			g_exchangeOrder.OrderToBuy.Remove(maxBuy)
 		}
 	}
@@ -284,7 +295,7 @@ func getOrderListStr(orderMap *treemap.Map) string {
 func GetExchangeOrder() (string, error) {
 	// 如果未摄合，则先进行摄合
 	if g_exchangeOrder.ToMatchFlag {
-		log.Debugf("to matchExchangeOrder")
+		log.Infof("to matchExchangeOrder")
 		matchExchangeOrder()
 	}
 

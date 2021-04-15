@@ -109,6 +109,8 @@ func (m *Order) Add(orderId int64, buyOrSellFlag byte, expectPrice, orderNum int
 		return err
 	}
 
+	//加了订单后要立即撮合 不能全部订单加完才撮合
+	matchExchangeOrder()
 	return nil
 }
 

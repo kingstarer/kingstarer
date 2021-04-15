@@ -30,7 +30,7 @@ func getOrderList() []string {
 }
 
 //将屏幕输入和输出分离，方便测试
-func do(inputStrSlice []string) string {
+func DualOrder(inputStrSlice []string) string {
 
 	for _, inputStr := range inputStrSlice {
 
@@ -55,13 +55,14 @@ func do(inputStrSlice []string) string {
 			if err != nil {
 				log.Fatalf("增加订单%v失败 %v 可能是订单号出现重复", orderId, err)
 			}
+			log.Debugf("add order ok %v", theOrder)
 		} else {
 			err = theOrder.Del(orderId)
 			if err != nil {
 				//有错误现在都是直接退出
-
 				log.Fatalf("删除订单%v失败 %v 可能是订单不存在", orderId, err)
 			}
+			log.Debugf("del order ok %v", orderId)
 		}
 	}
 
@@ -87,8 +88,8 @@ func InputOrderAndDual() {
 	log.Debugf("to getOrderList")
 	inputStrSlice := getOrderList()
 	//将输入的字符串进行处理
-	log.Debugf("to do dual")
-	exchangeOrder := do(inputStrSlice)
+	log.Debugf("to DualOrder")
+	exchangeOrder := DualOrder(inputStrSlice)
 	//输出待交易订单分布情况到屏幕
 	fmt.Println(exchangeOrder)
 }

@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="go build" type="GoApplicationRunConfiguration" factoryName="Go Application">
+    <module name="ordersyn" />
+    <working_directory value="$PROJECT_DIR$" />
+    <kind value="DIRECTORY" />
+    <filePath value="$PROJECT_DIR$/order/exchangeorder.go" />
+    <directory value="$PROJECT_DIR$" />
+    <method v="2" />
+  </configuration>
+</component>

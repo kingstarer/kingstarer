@@ -8,6 +8,9 @@ import (
 	log "github.com/htgx/htcomm/logger"
 )
 
+//20210410 hch 本程序主要实现功能是输入卖卖订单并进行撮合
+//输出最后未成交的订单分布情况
+//https://www.cnblogs.com/kingstarer/
 func main() {
 
 	err := config.LoadConfig("config.toml")

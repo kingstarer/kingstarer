@@ -29,9 +29,10 @@ func (m *OrderDesign) add(buyOrSellFlag byte, expectPrice, orderNum int) error {
 	if buyOrSellFlag == order_current.ORDER_BUY {
 		orderMapToAdd = m.OrderToBuy;
 	} else {
-		orderMapToAdd = m.OrderToBuy;
+		orderMapToAdd = m.OrderToSell;
 	}
 
+	log.Debugf("新增规划订单 价格%d 数量%d", expectPrice, orderNum)
 	//设置该价格期望成交的订单数量
 	val, ok := orderMapToAdd.Get(expectPrice)
 	if ok {

@@ -5,6 +5,7 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"os"
+	"fmt"
 	"runtime"
 
 	//"gopkg.in/natefinch/lumberjack.v2"
@@ -152,9 +153,11 @@ func Panicf(template string, args ...interface{}) {
 }
 
 func Fatal(args ...interface{}) {
+	fmt.Println("发生严重异常，程序退出。详情见日志")
 	errorLogger.Fatal(args...)
 }
 
 func Fatalf(template string, args ...interface{}) {
+	fmt.Println("发生严重异常，程序退出。详情见日志")
 	errorLogger.Fatalf(template, args...)
 }

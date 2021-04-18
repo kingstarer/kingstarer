@@ -6,10 +6,11 @@ work = 1
 #日志等级
 logLevel = "debug"
 #日志名称
-logName = "exchange"
+logName = "ordersyn"
 #日志路径
 logPath = "./logs/"
 # 是否把日志同步输出到控制台 一般只有调试时才输出
 stdoutEnableFlag = false
 
 [api]
+

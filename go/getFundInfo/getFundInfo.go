@@ -6,6 +6,7 @@ import (
 	"getFundInfo/config"
 	"getFundInfo/proxy"
 	"github.com/360EntSecGroup-Skylar/excelize"
+	"github.com/axgle/mahonia"
 	log "github.com/htgx/htcomm/logger"
 	"net/http"
 	"strings"
@@ -52,9 +53,7 @@ func GetFundHandlerGz(w http.ResponseWriter, r *http.Request) {
 		body = body[0 : len(body) - 2]
 	}
 
-
-
-	fmt.Fprintln(w, body);
+	fmt.Fprintln(w, "[" + body + "]");
 }
 
 
@@ -65,6 +64,10 @@ func GetFundClose(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		body = fmt.Sprintf("error:%v", err)
 	}
+
+	dec := mahonia.NewDecoder("gbk")
+
+	body = dec.ConvertString(body)
 
 	fmt.Fprintln(w, body);
 }
